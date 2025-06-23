@@ -1,0 +1,14 @@
+#!/bin/bash
+
+GRADLE_DIR="gradle-8.13"
+PATH_TO_BIN="$GRADLE_DIR"/bin/gradle
+ZIP="gradle-8.13-bin.zip"
+
+if [ ! -d "$GRADLE_DIR" ]; then
+	curl -L -o gradle-8.13-bin.zip https://services.gradle.org/distributions/gradle-8.13-bin.zip
+
+	unzip "$ZIP"
+	rm -f "$ZIP"
+fi
+
+"$PATH_TO_BIN" "${@}"

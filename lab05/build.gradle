@@ -1,0 +1,103 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+    id 'org.beryx.runtime' version '1.13.1' // image creation
+	id 'com.diffplug.spotless' version '6.25.0' // spotless for formatting & style checking 
+	id 'pmd'
+	id 'jacoco'
+}
+
+group projectGroup
+version projectVersion
+
+sourceCompatibility = projectSourceCompatibility
+targetCompatibility = projectTargetCompatibility
+
+repositories {
+	google()
+    mavenCentral()
+}
+
+dependencies {
+	// Lombok boilerplate autogeneration
+	compileOnly "org.projectlombok:lombok:${lombokVersion}"
+	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+	// JavaFX dependencies
+	implementation("org.openjfx:javafx-controls:${javaFxVersion}")
+	implementation("org.openjfx:javafx-swing:${javaFxVersion}")
+	
+	implementation("org.json:json:${javaJsonVersion}")
+
+	// JUnit for unit testing
+	implementation("org.jacoco:org.jacoco.agent:${jacocoVersion}:runtime")
+	implementation("org.jacoco:org.jacoco.core:${jacocoVersion}")
+	implementation("org.jacoco:org.jacoco.report:${jacocoVersion}")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+}
+
+// apply spotless for java code formatting and style checking
+spotless {
+	java {
+		target 'src/**/*.java'
+
+		cleanthat()
+		palantirJavaFormat('2.61.0').formatJavadoc(true)
+		trimTrailingWhitespace()
+		indentWithTabs()
+		formatAnnotations()
+	}
+}
+
+pmd {
+	consoleOutput true
+	toolVersion '7.12.0'
+	ruleSets = ["rulesets/java/quickstart.xml"]
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+javafx {
+    version = javaFxVersion
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.swing']
+}
+
+application {
+    mainClass = 'com.walhay.lab.AppGUI'
+}
+
+jar {
+    manifest {
+        attributes('Main-Class': 'com.walhay.lab.AppGUI')
+    }
+}
+
+test {
+    useJUnitPlatform()
+	finalizedBy jacocoTestReport
+}
+
+tasks.withType(Test) {
+    testLogging {
+        events "passed"
+        events "failed"
+    }
+}
+
+jacocoTestReport {
+	dependsOn test
+}
+
+jacoco {
+	toolVersion = jacocoVersion
+}
+
+runtime {
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.swing']
+}

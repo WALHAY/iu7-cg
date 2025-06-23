@@ -1,0 +1,83 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.gradle:osdetector-gradle-plugin:1.7.3'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+}
+
+group projectGroup
+version versionGui
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = projectSourceCompatibility
+targetCompatibility = projectTargetCompatibility
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.register('buildCli') {
+    group = "build"
+    application.mainClass = "com.walhay.lab.AppCLI"
+    jar.manifest.attributes("Main-Class": "com.walhay.lab.AppCLI")
+    sourceSets.main.resources.exclude("AppGUI.java")
+	version versionCli
+    finalizedBy(build)
+}
+
+tasks.register('runCli') {
+	dependsOn('buildCli')
+	run.standardInput = System.in
+	finalizedBy('run')
+}
+
+tasks.withType(Test) {
+    testLogging {
+        events "passed"
+        events "failed"
+    }
+}
+
+tasks.build {
+    sourceSets.main.resources.exclude("AppCLI.java")
+}
+
+application {
+    mainClass = 'com.walhay.lab.AppGUI'
+}
+
+javafx {
+    version = javaFxVersion
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.swing']
+}
+
+jar {
+    manifest {
+        attributes("Main-Class": "com.walhay.lab.AppGUI")
+    }
+}
+
+dependencies {
+	implementation("org.openjfx:javafx-controls:${javaFxVersion}")
+	implementation("org.openjfx:javafx-swing:${javaFxVersion}")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+	testImplementation("org.json:json:${javaJsonVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.walhay.lab.gui.ViewController">
+   <items>
+      <Pane fx:id="canvasPane" prefHeight="200.0" prefWidth="200.0" />
+      <VBox alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefWidth="300.0">
+         <children>
+            <ListView fx:id="algoList" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="150.0" VBox.vgrow="ALWAYS" />
+            <HBox prefHeight="150.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <GridPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="150.0" prefWidth="120.0" HBox.hgrow="ALWAYS">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#drawLines" text="Draw lines" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Label text="Start:" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Label text="End:" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <Label text="X" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                        <Label text="Y" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                        <TextField fx:id="startX" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="startY" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="endX" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="endY" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Label text="Line" GridPane.halignment="CENTER" />
+                     </children>
+                  </GridPane>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <GridPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="150.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="60.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ChoiceBox fx:id="circleAlgo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </ChoiceBox>
+                        <Label text="Circle" GridPane.halignment="CENTER" />
+                        <Label text="Points:" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <TextField fx:id="circlePoints" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#drawCircle" text="Draw circle" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Label text="Algorithm:" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <ColorPicker fx:id="circleColor" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </GridPane.margin>
+                           <value>
+                              <Color />
+                           </value>
+                        </ColorPicker>
+                     </children>
+                  </GridPane>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <Separator prefWidth="200.0" />
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label text="Background color:" />
+                  <ColorPicker fx:id="bgColor" promptText="Color" />
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#clearCanvas" text="Clear canvas" textAlignment="CENTER" />
+               </children>
+            </HBox>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+              <content>
+                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+                     <children>
+                        <Text fx:id="reportText" layoutX="-126.0" layoutY="104.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="634.21630859375" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </items>
+</SplitPane>

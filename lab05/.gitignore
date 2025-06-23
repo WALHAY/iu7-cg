@@ -1,0 +1,16 @@
+.classpath
+.project
+.factorypath
+gradle
+gradle-8.13
+gradlew.bat
+
+*.bmp
+.DS_Store
+
+bin/
+build/
+.settings/
+.gradle/
+*.png
+*.txt

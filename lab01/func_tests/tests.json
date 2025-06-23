@@ -1,0 +1,113 @@
+{
+  "tests": [
+    {
+      "name": "pos1",
+      "positive": true,
+      "points_count": 8,
+      "points": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        13,
+        0,
+        12,
+        3,
+        1
+      ],
+      "desc": [
+        "Expected 2 triangles: small and big",
+        "(1, 2), (3, 4), (3, 1) - small triangle",
+        "(0, 12), (5, 6), (11, 13) - big triangle"
+      ]
+    },
+    {
+      "name": "pos2",
+      "positive": true,
+      "points_count": 6,
+      "points": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        10,
+        0,
+        0,
+        10,
+        10,
+        10
+      ],
+      "desc": [
+        "Expected 2 triangles: small and big",
+        "(0, 1), (1, 0), (0, 0) - small triangle",
+        "(0, 10), (10, 0), (10, 10) - big triangle"
+      ]
+    },
+    {
+      "name": "pos3",
+      "positive": true,
+      "points_count": 7,
+      "points": [
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        5,
+        10,
+        8,
+        10,
+        15,
+        10
+      ],
+      "desc": [
+        "Expected 2 triangles: small and big",
+        "(3, 3), (4, 4), (5, 10) - small triangle",
+        "(1, 1), (8, 10), (15, 10) - big triangle"
+      ]
+    },
+    {
+      "name": "neg1",
+      "positive": false,
+      "points_count": 6,
+      "points": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "desc": [
+        "All points on one line"
+      ]
+    },
+    {
+      "name": "neg2",
+      "positive": false,
+      "points_count": 5,
+      "points": [],
+      "desc": [
+        "No user input"
+      ]
+    }
+  ]
+}
